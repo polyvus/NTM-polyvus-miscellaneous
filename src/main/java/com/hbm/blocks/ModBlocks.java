@@ -373,6 +373,7 @@ public class ModBlocks {
 	public static Block brick_fire;
 
 	public static Block lightstone;
+	public static Block marblestone;
 	public static Block brick_forgotten;
 	public static Block brick_forgotten_lock;
 
@@ -1737,6 +1738,7 @@ public class ModBlocks {
 		reinforced_ducrete = new BlockNoSpawn(Material.rock).setBlockName("reinforced_ducrete").setCreativeTab(MainRegistry.blockTab).setHardness(20.0F).setResistance(1000.0F).setBlockTextureName(RefStrings.MODID + ":reinforced_ducrete");
 
 		lightstone = new BlockLightstone(Material.rock, LightstoneType.class, true, true).setBlockName("lightstone").setCreativeTab(MainRegistry.blockTab).setHardness(2F).setResistance(15.0F).setBlockTextureName(RefStrings.MODID + ":lightstone");
+		marblestone = new BlockMarblestone(Material.rock, MarblestoneType.class, true,true).setBlockName("marblestone").setCreativeTab(MainRegistry.blockTab).setHardness(2F).setResistance(15.0F).setBlockTextureName(RefStrings.MODID + ":marblestone");
 		brick_forgotten = new BlockForgottenBrick().setBlockName("brick_forgotten").setBlockUnbreakable().setResistance(666_666F).setBlockTextureName(RefStrings.MODID + ":brick_forgotten");
 		brick_forgotten_lock = new BlockForgottenLock().setBlockName("brick_forgotten_lock").setBlockUnbreakable().setResistance(666_666F).setBlockTextureName(RefStrings.MODID + ":brick_forgotten_lock");
 
@@ -3078,6 +3080,8 @@ public class ModBlocks {
 		register(lightstone_bricks_stairs);
 		register(stones_slab, ItemModSlab.class);
 		register(stones_double_slab, ItemModSlab.class);
+
+		register(marblestone);
 
 		register(brick_forgotten);
 		register(brick_forgotten_lock);

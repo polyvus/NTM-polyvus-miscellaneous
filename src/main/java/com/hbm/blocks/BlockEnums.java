@@ -74,6 +74,16 @@ public class BlockEnums {
 		CHISELED
 	}
 
+	public static enum MarblestoneType {
+		PLAIN,
+		STRIPE,
+		BLACK_TILE,
+		WHITE_TILE,
+		BLACK_HOLLOW,
+		WHITE_HOLLOW
+	}
+	
+
 	public static enum DecoComputerEnum {
 		IBM_300PL
 	}
