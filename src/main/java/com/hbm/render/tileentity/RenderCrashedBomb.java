@@ -38,15 +38,53 @@ public class RenderCrashedBomb extends TileEntitySpecialRenderer implements IIte
 		GL11.glRotated(pitch, 1, 0, 0);
 		GL11.glRotated(roll, 0, 0, 1);
 		GL11.glTranslated(0, 0, -offset);
-		
-		EnumDudType type = EnumUtil.grabEnumSafely(EnumDudType.class, tile.getBlockMetadata());
-		GL11.glShadeModel(GL11.GL_SMOOTH);
-		if(type == EnumDudType.BALEFIRE) { bindTexture(ResourceManager.dud_balefire_tex); ResourceManager.dud_balefire.renderAll(); }
-		if(type == EnumDudType.CONVENTIONAL) { bindTexture(ResourceManager.dud_conventional_tex); ResourceManager.dud_conventional.renderAll(); }
-		if(type == EnumDudType.NUKE) { GL11.glTranslated(0, 0, 1.25); bindTexture(ResourceManager.dud_nuke_tex); ResourceManager.dud_nuke.renderAll(); }
-		if(type == EnumDudType.SALTED) { GL11.glTranslated(0, 0, 0.5); bindTexture(ResourceManager.dud_salted_tex); ResourceManager.dud_salted.renderAll(); }
-		GL11.glShadeModel(GL11.GL_FLAT);
 
+		EnumDudType type = EnumUtil.grabEnumSafely(EnumDudType.class, tile.getBlockMetadata());
+
+	GL11.glShadeModel(GL11.GL_SMOOTH);
+
+	if(type == EnumDudType.BALEFIRE) {
+    	if(tile.isRepaired())
+        	bindTexture(ResourceManager.dud_balefire_rep);
+    	else
+        	bindTexture(ResourceManager.dud_balefire_tex);
+
+    	ResourceManager.dud_balefire.renderAll();
+	}
+
+	if(type == EnumDudType.CONVENTIONAL) {
+    	if(tile.isRepaired())
+        	bindTexture(ResourceManager.dud_conventional_rep);
+    	else
+        	bindTexture(ResourceManager.dud_conventional_tex);
+
+    	ResourceManager.dud_conventional.renderAll();
+	}
+
+	if(type == EnumDudType.NUKE) {
+    	GL11.glTranslated(0, 0, 1.25);
+
+    	if(tile.isRepaired())
+        	bindTexture(ResourceManager.dud_nuke_rep);
+    	else
+        	bindTexture(ResourceManager.dud_nuke_tex);
+
+    	ResourceManager.dud_nuke.renderAll();
+	}
+
+	if(type == EnumDudType.SALTED) {
+    	GL11.glTranslated(0, 0, 0.5);
+
+    	if(tile.isRepaired())
+        	bindTexture(ResourceManager.dud_salted_rep);
+    	else
+        	bindTexture(ResourceManager.dud_salted_tex);
+
+    	ResourceManager.dud_salted.renderAll();
+	}
+
+	GL11.glShadeModel(GL11.GL_FLAT);
+		
 		GL11.glPopMatrix();
 	}
 
