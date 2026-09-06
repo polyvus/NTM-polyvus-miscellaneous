@@ -15,7 +15,18 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
-public boolean isRepaired = false;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hbm.inventory.RecipesCommon.AStack;
+import com.hbm.tileentity.IRepairable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+
+public class TileEntityCrashedBomb extends TileEntity implements IRepairable {
+
+    public boolean isRepaired = false;
 
 public class TileEntityCrashedBomb extends TileEntity {
 	
