@@ -86,12 +86,14 @@ public class BlockCrashedBomb extends BlockEnumMulti implements ITileEntityProvi
 	}
 
 	@Override
-	public boolean onScrew(..., ToolType tool) {
+	public boolean onScrew(World world, EntityPlayer player, int x, int y, int z,
+        	int side, float fX, float fY, float fZ, ToolType tool) {
+
     	if(tool != ToolType.TORCH)
         	return false;
 
     	TileEntityCrashedBomb dud =
-        	(TileEntityCrashedBomb) world.getTileEntity(x, y, z);
+        	    (TileEntityCrashedBomb) world.getTileEntity(x, y, z);
 
     	if(dud == null || !dud.isDamaged())
         	return false;
