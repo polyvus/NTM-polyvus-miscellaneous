@@ -28,7 +28,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockCrashedBomb extends BlockEnumMulti implements ITileEntityProvider, IBomb {
+public class BlockCrashedBomb extends BlockEnumMulti implements ITileEntityProvider, IBomb, IToolable {
 	
 	public static enum EnumDudType {
 		BALEFIRE, CONVENTIONAL, NUKE, SALTED
@@ -85,6 +85,36 @@ public class BlockCrashedBomb extends BlockEnumMulti implements ITileEntityProvi
 		for(ItemStack drop : drops) world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, drop));
 	}
 
+	@Override
+	public boolean onScrew(..., ToolType tool) {
+    	if(tool != ToolType.TORCH)
+        	return false;
+
+    	TileEntityCrashedBomb dud =
+        	(TileEntityCrashedBomb) world.getTileEntity(x, y, z);
+
+    	if(dud == null || !dud.isDamaged())
+        	return false;
+
+    	dud.repair(player);
+    	return true;
+	}
+
+	@Override
+	public float getBlockHardness(World world, int x, int y, int z) {
+
+    	TileEntity te = world.getTileEntity(x, y, z);
+
+    	if(te instanceof TileEntityCrashedBomb) {
+	        TileEntityCrashedBomb dud = (TileEntityCrashedBomb) te;
+
+        	if(dud.isRepaired)
+        	    return 3.0F;
+    	}
+
+    	return -1.0F;
+	}
+	
 	@Override
 	public BombReturnCode explode(World world, int x, int y, int z) {
 
