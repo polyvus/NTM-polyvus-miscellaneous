@@ -15,6 +15,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
+public boolean isRepaired = false;
+
 public class TileEntityCrashedBomb extends TileEntity {
 	
 	@Override
@@ -44,4 +46,6 @@ public class TileEntityCrashedBomb extends TileEntity {
 	
 	@Override public AxisAlignedBB getRenderBoundingBox() { return TileEntity.INFINITE_EXTENT_AABB; }
 	@Override @SideOnly(Side.CLIENT) public double getMaxRenderDistanceSquared() { return 65536.0D; }
+	@Override public boolean isDamaged() { return !isRepaired; }
+	@Override public void repair(EntityPlayer player) { isRepaired = true; markDirty(); }
 }
